@@ -45,7 +45,7 @@ OSH.DataReceiver.JSON = OSH.DataReceiver.DataSource.extend({
    * @instance
    */
   parseTimeStamp: function(data){
-    var rec = String.fromCharCode.apply(null, new Uint8Array(data));
+    var rec = new TextDecoder("utf-8").decode(new Uint8Array(data));
     return new Date(JSON.parse(rec)['time']).getTime();
   },
 
@@ -67,7 +67,7 @@ OSH.DataReceiver.JSON = OSH.DataReceiver.DataSource.extend({
    * @instance
    */
   parseData: function(data){
-    var rec = JSON.parse(String.fromCharCode.apply(null, new Uint8Array(data)));
+    var rec = JSON.parse(new TextDecoder("utf-8").decode(new Uint8Array(data)));
 
     var result = {};
 
